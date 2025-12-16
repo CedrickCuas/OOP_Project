@@ -1,19 +1,22 @@
-extends Node2D
+extends CharacterBody2D # Changed from Node2D so move_and_slide works
 
-const SPEED = 60
-var direction  = 1
+const SPEED = 25 # Adjust this to make the slime faster or slower
 
-@onready var ray_cast_2d_right: RayCast2D = $RayCast2D_Right
-@onready var ray_cast_2d_left: RayCast2D = $RayCast2D_Left
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite = $AnimatedSprite2D
+# Finds the player node automatically
+@onready var player = get_tree().get_first_node_in_group("Player")
 
-func _process(delta: float) -> void:
-	if ray_cast_2d_right.is_colliding():
-		direction = -1
-		animated_sprite_2d.flip_h = false
-	if ray_cast_2d_left.is_colliding():
-		direction = 1
-		animated_sprite_2d.flip_h = true
+func _physics_process(_delta):
+	if player:
+		# Calculate the direction towards the player
+		var direction = global_position.direction_to(player.global_position)
 		
-	
-	position.x += direction * SPEED * delta
+		# Set velocity and move
+		velocity = direction * SPEED
+		move_and_slide()
+		
+		# Optional: Flip the sprite to face the player
+		if direction.x > 0:
+			animated_sprite.flip_h = true # Face right
+		elif direction.x < 0:
+			animated_sprite.flip_h = false  # Face left
