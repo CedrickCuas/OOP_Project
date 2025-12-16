@@ -1,13 +1,48 @@
 extends CharacterBody2D
 
-var movement_speed = 40.0
+@export var healthbar: HealthBar
 
-func _physics_process(_delta):
-	movement()
+const MAX_HEALTH := 30
+const MOVE_SPEED := 40.0
 
-func movement():
-	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
-	var y_mov = Input.get_action_strength("down") - Input.get_action_strength("up")
-	var mov = Vector2 (x_mov, y_mov)
-	velocity = mov.normalized()*movement_speed
+var health: int = MAX_HEALTH
+var is_alive := true
+
+
+func _physics_process(_delta: float) -> void:
+	var input_vector := Vector2(
+		Input.get_action_strength("right") - Input.get_action_strength("left"),
+		Input.get_action_strength("down") - Input.get_action_strength("up")
+	)
+
+	velocity = input_vector.normalized() * MOVE_SPEED if input_vector.length() > 0 else Vector2.ZERO
 	move_and_slide()
+
+
+func take_damage(amount: int) -> void:
+	if not is_alive:
+		return
+
+	health = clamp(health - amount, 0, MAX_HEALTH)
+	healthbar.health = health
+
+	if health == 0:
+		die()
+
+
+func heal(amount: int) -> void:
+	if not is_alive:
+		return
+
+	health = clamp(health + amount, 0, MAX_HEALTH)
+	healthbar.health = health
+
+
+func die() -> void:
+	is_alive = false
+	print("Player died")
+	queue_free()
+
+
+func _on_hurtbox_area_entered(_area) -> void:
+	take_damage(1)
