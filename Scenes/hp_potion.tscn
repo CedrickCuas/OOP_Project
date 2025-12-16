@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://663ni0y4m14v"]
+
+[ext_resource type="Script" uid="uid://by5gqveb6d7yx" path="res://Scripts/hp_potion.gd" id="1_js8mp"]
+[ext_resource type="Texture2D" uid="uid://cnaynqymn8ysd" path="res://ItemAssets/poç▌o vermelha.png" id="1_ygup6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc71s"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kte6"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keapk"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p4hp"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08ro3"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkcl2"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owsr5"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53hqf"]
+atlas = ExtResource("1_ygup6")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h40hx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc71s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kte6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keapk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p4hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08ro3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkcl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owsr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53hqf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6t8a"]
+radius = 8.0
+
+[node name="hp_potion" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_js8mp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h40hx")
+autoplay = "default"
+frame_progress = 0.64039385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v6t8a")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
