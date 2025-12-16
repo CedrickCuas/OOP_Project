@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh6sgf8lbinf3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bbc0q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjarm"]
+bg_color = Color(1, 0.7798134, 0.10060341, 1)
+
+[node name="Expbar" type="ProgressBar"]
+z_index = 1
+offset_right = 240.0
+offset_bottom = 4.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_bbc0q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jjarm")
+value = 20.0
+show_percentage = false

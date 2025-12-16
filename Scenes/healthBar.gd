@@ -1,25 +1,34 @@
 extends ProgressBar
 
-@onready var timer = $Timer
-@onready var damage_bar = $DamageBar
+@onready var damage_bar = $DamageBar   # optional
+@onready var tween = $Tween            # optional
 
-var health := 0 : set = _set_health
+var health := 0
+var max_health := 10
 
-func _set_health(new_health):
-	var prev_health = health
-	health = min(max_value, new_health)
+# Initialize health bar at max
+func init_health(_max_health: int):
+	max_health = _max_health
+	health = max_health
+	max_value = max_health
 	value = health
 	
-	if health <= 0:
-		queue_free()
-	
-	if health < prev_health:
-		timer.start()
-	else:
+	if damage_bar:
+		damage_bar.max_value = max_health
 		damage_bar.value = health
 
-func init_health(_health):
-	health = _health
-	max_value = health
+# Set health instantly
+func set_health(new_health: int):
+	health = clamp(new_health, 0, max_health)
 	value = health
-	damage_bar.value = health
+	
+	if damage_bar:
+		if tween:
+			tween.stop(damage_bar, "value")
+			# immediately set the damage bar to health if health is max
+			if health == max_health:
+				damage_bar.value = health
+			else:
+				tween.tween_property(damage_bar, "value", health, 0.3)
+		else:
+			damage_bar.value = health
