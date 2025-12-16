@@ -71,11 +71,15 @@ animations = [{
 radius = 8.0
 
 [node name="hp_potion" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_js8mp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h40hx")
-frame_progress = 0.29942974
+frame_progress = 0.64039385
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v6t8a")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

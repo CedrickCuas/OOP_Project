@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://deofrwp5w1jll"]
+[gd_scene load_steps=43 format=4 uid="uid://deofrwp5w1jll"]
 
 [ext_resource type="PackedScene" uid="uid://bn2sk4xmbvp74" path="res://Scenes/character_body_2d.tscn" id="1_x87qo"]
 [ext_resource type="Texture2D" uid="uid://drfiwoekuak4m" path="res://MapAssets/mainlevbuild.png" id="2_b6fju"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://dlyp7ppramcwh" path="res://MapAssets/torch_1.png" id="18_e624q"]
 [ext_resource type="Texture2D" uid="uid://dt6teux3nqgk6" path="res://MapAssets/torch_2.png" id="19_pbc1q"]
 [ext_resource type="PackedScene" uid="uid://663ni0y4m14v" path="res://Scenes/hp_potion.tscn" id="20_mipjh"]
+[ext_resource type="PackedScene" uid="uid://caldsy25bholu" path="res://Scenes/killzone.tscn" id="21_817jg"]
+[ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="22_vtwju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
 texture = ExtResource("2_b6fju")
@@ -3371,7 +3373,20 @@ tile_map_data = PackedByteArray("AAD1/wwAAAAAAAEAAAD1/w0AAAAAAAIAAAD1/w4AAAAAAAM
 tile_set = SubResource("TileSet_nys34")
 
 [node name="hp_potion" parent="." instance=ExtResource("20_mipjh")]
-position = Vector2(-63, 82)
+position = Vector2(-112, 2)
 
 [node name="hp_potion2" parent="." instance=ExtResource("20_mipjh")]
-position = Vector2(-129, -23)
+position = Vector2(41, 65)
+
+[node name="hp_potion3" parent="." instance=ExtResource("20_mipjh")]
+position = Vector2(-64, 72)
+
+[node name="killzone" parent="." instance=ExtResource("21_817jg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+
+[node name="Purple_slime" parent="killzone" instance=ExtResource("22_vtwju")]
+position = Vector2(216, 278)
+
+[node name="Purple_slime2" parent="killzone" instance=ExtResource("22_vtwju")]
+position = Vector2(98, -47)
