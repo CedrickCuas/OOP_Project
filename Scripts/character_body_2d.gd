@@ -9,19 +9,6 @@ var health: int = MAX_HEALTH
 var is_alive := true
 
 
-func _ready() -> void:
-	if healthbar == null:
-		healthbar = get_tree().get_root().get_node("Root/CanvasLayer/HealthBar")
-		
-	if healthbar:
-		healthbar.init_health(MAX_HEALTH)
-	else:
-		push_error("HealthBar not found! Check the node path.")
-		
-	health = MAX_HEALTH
-	is_alive = true
-
-
 func _physics_process(_delta: float) -> void:
 	var input_vector := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
