@@ -19,8 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://eyor8hpbpjwh" path="res://MapAssets/candleB_04.png" id="14_5q52j"]
 [ext_resource type="Texture2D" uid="uid://dlyp7ppramcwh" path="res://MapAssets/torch_1.png" id="18_e624q"]
 [ext_resource type="Texture2D" uid="uid://dt6teux3nqgk6" path="res://MapAssets/torch_2.png" id="19_pbc1q"]
-[ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scenes/health_bar.gd" id="20_mipjh"]
-[ext_resource type="Script" uid="uid://dk7rbf2m6oy7j" path="res://Scenes/exp_bar.gd" id="21_aq00n"]
+[ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_mipjh"]
+[ext_resource type="Script" uid="uid://dk7rbf2m6oy7j" path="res://Scripts/exp_bar.gd" id="21_aq00n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
 texture = ExtResource("2_b6fju")
