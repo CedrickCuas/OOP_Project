@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 var movement_speed = 40.0
 
+var experience = 0
+var experience_level = 1
+var collected_experience = 0
+
 func _physics_process(_delta):
 	movement()
 
