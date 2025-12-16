@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://deofrwp5w1jll"]
+[gd_scene load_steps=50 format=4 uid="uid://deofrwp5w1jll"]
 
 [ext_resource type="PackedScene" uid="uid://bn2sk4xmbvp74" path="res://Scenes/character_body_2d.tscn" id="1_x87qo"]
 [ext_resource type="Texture2D" uid="uid://drfiwoekuak4m" path="res://MapAssets/mainlevbuild.png" id="2_b6fju"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://dt6teux3nqgk6" path="res://MapAssets/torch_2.png" id="19_pbc1q"]
 [ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_mipjh"]
 [ext_resource type="Script" uid="uid://dk7rbf2m6oy7j" path="res://Scripts/exp_bar.gd" id="21_aq00n"]
+[ext_resource type="PackedScene" uid="uid://caldsy25bholu" path="res://Scenes/killzone.tscn" id="23_gqlrj"]
+[ext_resource type="PackedScene" uid="uid://bwff8irmqh8w7" path="res://Scenes/enemy_spawner.tscn" id="23_vtwju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
 texture = ExtResource("2_b6fju")
@@ -3371,7 +3373,7 @@ shadow_offset = Vector2(1, 0)
 [node name="GameScene" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_x87qo")]
-position = Vector2(-9, 2)
+position = Vector2(37, 24)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(2, -16)
@@ -3453,5 +3455,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_817jg")
 value = 100.0
 show_percentage = false
 script = ExtResource("21_aq00n")
+
+[node name="killzone" parent="." instance=ExtResource("23_gqlrj")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("23_vtwju")]
 
 [connection signal="timeout" from="CanvasLayer/healthBar/Timer" to="CanvasLayer/healthBar" method="_on_timer_timeout"]
