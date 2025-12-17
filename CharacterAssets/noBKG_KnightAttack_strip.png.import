@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caiew40jw5ove"
-path="res://.godot/imported/KnightShield_strip.png-f5502677934c6f21c30ac56c13f273be.ctex"
+uid="uid://btj5fiwohxc0v"
+path="res://.godot/imported/noBKG_KnightAttack_strip.png-1786837295564ac699fb3eac42b1f010.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TestCharacterAssets/KnightShield_strip.png"
-dest_files=["res://.godot/imported/KnightShield_strip.png-f5502677934c6f21c30ac56c13f273be.ctex"]
+source_file="res://CharacterAssets/noBKG_KnightAttack_strip.png"
+dest_files=["res://.godot/imported/noBKG_KnightAttack_strip.png-1786837295564ac699fb3eac42b1f010.ctex"]
 
 [params]
 
