@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 UpgradeDb="*res://Utility/upgrade_db.tscn"
 
+[global_group]
+
+loot=""
+
 [input]
 
 up={
