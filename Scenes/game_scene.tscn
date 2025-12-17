@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://deofrwp5w1jll"]
+[gd_scene load_steps=52 format=4 uid="uid://deofrwp5w1jll"]
 
 [ext_resource type="Texture2D" uid="uid://drfiwoekuak4m" path="res://MapAssets/mainlevbuild.png" id="2_b6fju"]
 [ext_resource type="Texture2D" uid="uid://ddoij4o26ytk6" path="res://MapAssets/decorative.png" id="3_6h5vk"]
@@ -19,8 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://dlyp7ppramcwh" path="res://MapAssets/torch_1.png" id="18_e624q"]
 [ext_resource type="Texture2D" uid="uid://dt6teux3nqgk6" path="res://MapAssets/torch_2.png" id="19_pbc1q"]
 [ext_resource type="PackedScene" uid="uid://bwff8irmqh8w7" path="res://Scenes/enemy_spawner.tscn" id="20_mipjh"]
+[ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_vtwju"]
 [ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="21_aq00n"]
-[ext_resource type="PackedScene" uid="uid://cyeio3ey71jnw" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
+[ext_resource type="PackedScene" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
+[ext_resource type="PackedScene" uid="uid://k6w22rr5buj7" path="res://Objects/experience_gem.tscn" id="22_vtwju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
 texture = ExtResource("2_b6fju")
@@ -3339,6 +3341,33 @@ sources/17 = SubResource("TileSetAtlasSource_uvj3q")
 sources/18 = SubResource("TileSetAtlasSource_mqs2o")
 sources/19 = SubResource("TileSetAtlasSource_p4uwf")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_817jg"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtwju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_817jg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtwju"]
+bg_color = Color(3.465414e-06, 0.5278463, 0.15785313, 1)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_817jg"]
+bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnr0w"]
+bg_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vtwju"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqlrj"]
+bg_color = Color(0.99999994, 0.79363066, 0.33067334, 1)
+
 [node name="GameScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -3365,7 +3394,100 @@ position = Vector2(-2, 87)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -3)
 
+[node name="GrabArea" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/GrabArea"]
+shape = SubResource("CircleShape2D_817jg")
+
+[node name="CollectArea" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CollectArea"]
+shape = SubResource("CircleShape2D_vtwju")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="Control" type="Control" parent="Player/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="Player/CanvasLayer/Control"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 0
+offset_left = 246.0
+offset_top = 573.0
+offset_right = 965.0
+offset_bottom = 585.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_817jg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vtwju")
+value = 60.0
+show_percentage = false
+script = ExtResource("20_vtwju")
+
+[node name="DamageBar" type="ProgressBar" parent="Player/CanvasLayer/Control/HealthBar"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_817jg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fnr0w")
+value = 80.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="Player/CanvasLayer/Control/HealthBar/DamageBar"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 39.0
+text = "Exp"
+
+[node name="Timer" type="Timer" parent="Player/CanvasLayer/Control/HealthBar"]
+wait_time = 0.4
+one_shot = true
+
+[node name="ExperienceBar" type="ProgressBar" parent="Player/CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 271.0
+offset_top = 613.0
+offset_right = 927.0
+offset_bottom = 625.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_vtwju")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gqlrj")
+value = 5.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/Control/ExperienceBar"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = -69.0
+offset_right = 14.0
+offset_bottom = -46.0
+text = "HP"
+
 [node name="EnemySpawner" parent="." instance=ExtResource("20_mipjh")]
 
 [node name="Purple_slime" parent="." instance=ExtResource("21_aq00n")]
 position = Vector2(116, 93)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ExperienceGem" parent="Node2D" instance=ExtResource("22_vtwju")]
+position = Vector2(-146, 66)
+
+[connection signal="area_entered" from="Player/GrabArea" to="Player" method="_on_grab_area_area_entered"]
+[connection signal="area_entered" from="Player/CollectArea" to="Player" method="_on_collect_area_area_entered"]
+[connection signal="timeout" from="Player/CanvasLayer/Control/HealthBar/Timer" to="Player/CanvasLayer/Control/HealthBar" method="_on_timer_timeout"]
