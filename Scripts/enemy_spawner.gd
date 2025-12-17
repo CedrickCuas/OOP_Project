@@ -6,7 +6,7 @@ extends Node2D
 
 var time = 0
 
-func _on_timer_timeout() -> void:
+func _on_timer_timeout():
 	time += 1
 	var enemy_spawns = spawns
 	for i in enemy_spawns:
@@ -22,8 +22,6 @@ func _on_timer_timeout() -> void:
 					var enemy_spawn = new_enemy.instantiate()
 					enemy_spawn.global_position = get_random_position()
 					add_child(enemy_spawn)
-					
-					print("SLIME! Spawned at: ", enemy_spawn.global_position)
 					counter += 1
 					
 func get_random_position(): 

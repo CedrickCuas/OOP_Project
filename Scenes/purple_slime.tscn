@@ -92,7 +92,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_lodx0")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Walking",
 "speed": 10.0
 }]
 
@@ -107,8 +107,9 @@ script = ExtResource("1_4sdck")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xg40y")
-autoplay = "default"
-frame_progress = 0.23313951
+animation = &"Walking"
+autoplay = "Walking"
+frame_progress = 0.99282706
 
 [node name="killzone" parent="." instance=ExtResource("2_4sdck")]
 
