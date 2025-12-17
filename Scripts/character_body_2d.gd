@@ -10,11 +10,12 @@ var is_alive := true
 var can_take_damage := true
 
 # Experience
+var experience_level: int = 1
 var current_exp: int = 0
 
 # Canvas layer nodes (safe null checks)
-@onready var expBar = get_node("%ExperienceBar")
-@onready var lblLevel = get_node("%lbl_level")
+@onready var expBar = get_node_or_null("%ExpBar")
+@onready var lblLevel = get_node_or_null("%lbl_level")
 @onready var levelPanel = get_node_or_null("%LevelUp")
 @onready var upgradeOptions = get_node_or_null("%UpgradeOptions")
 @onready var sndLevelUp = get_node_or_null("%snd_levelup")
@@ -29,14 +30,12 @@ var current_exp: int = 0
 
 
 func _ready():
+	# Initialize health safely
 	health = MAX_HEALTH
 	if healthbar:
 		healthbar.init_health(health)
 	else:
 		push_warning("HealthBar node not found! Health UI will not update.")
-
-	# ✅ FIX: initialize EXP bar
-	set_expbar(current_exp, calculate_experiencecap())
 
 
 func _physics_process(_delta: float) -> void:
@@ -86,28 +85,10 @@ func _on_hurtbox_area_entered(_area) -> void:
 # -------------------------
 # Experience / Leveling
 # -------------------------
-func _on_grab_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("loot"):
-		area.target = self
-
-
-func _on_collect_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("loot"):
-		var gem_exp = area.collect()
-		gain_experience(gem_exp)
-
-
-var experience = 0
-var experience_level = 1
-var collected_experience = 0
-
-
 func gain_experience(amount: int) -> void:
 	current_exp += amount
-
 	check_levelup()
-
-	set_expbar(current_exp, calculate_experiencecap())
+	update_expbar()
 
 
 func check_levelup() -> void:
@@ -115,37 +96,50 @@ func check_levelup() -> void:
 	while current_exp >= exp_cap:
 		current_exp -= exp_cap
 		experience_level += 1
-		#levelup()
+		levelup()
 		exp_cap = calculate_experiencecap()
 
 
-func calculate_experience(gem_exp):
-	var exp_required = calculate_experiencecap()
-	collected_experience += gem_exp
-	if experience + collected_experience >= exp_required:
-		collected_experience -= exp_required - experience
-		experience_level += 1
-		experience = 0
-		exp_required = calculate_experiencecap()
-		#levelup()
-	else:
-		experience += collected_experience
-		collected_experience = 0
-
-	set_expbar(experience, exp_required)
-
-
-func calculate_experiencecap():
-	var exp_cap = experience_level
+func calculate_experiencecap() -> int:
 	if experience_level < 20:
-		exp_cap = experience_level * 5
+		return experience_level * 5
 	elif experience_level < 40:
-		exp_cap = 95 * (experience_level - 19) * 8
+		return 95 * (experience_level - 19) * 8
 	else:
-		exp_cap = 255 + (experience_level - 39) * 12
-	return exp_cap
+		return 255 + (experience_level - 39) * 12
 
 
-func set_expbar(set_value = 1, set_max_value = 100):
-	expBar.value = set_value
-	expBar.max_value = set_max_value
+func update_expbar() -> void:
+	if not expBar:
+		push_warning("ExpBar node not found! Cannot update XP bar.")
+		return
+	var exp_cap = calculate_experiencecap()
+	expBar.max_value = exp_cap
+	expBar.value = current_exp
+
+
+func levelup() -> void:
+	if lblLevel:
+		lblLevel.text = "Level: %s" % experience_level
+	if levelPanel:
+		levelPanel.visible = true
+		get_tree().paused = true
+		var tween = levelPanel.create_tween()
+		tween.tween_property(levelPanel, "position", Vector2(220, 50), 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+		tween.play()
+	if sndLevelUp:
+		sndLevelUp.play()
+
+
+# -------------------------
+# Loot / Collection
+# -------------------------
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loaot"):
+		area.target = self
+
+
+func _on_collect_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()
+		gain_experience(gem_exp)
