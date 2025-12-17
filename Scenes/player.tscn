@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cyeio3ey71jnw"]
+[gd_scene load_steps=20 format=3 uid="uid://cyeio3ey71jnw"]
 
+[ext_resource type="Script" uid="uid://b45hfmb8xlhtv" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cuc6qamhtc8yr" path="res://CharacterAssets/noBKG_KnightIdle_strip.png" id="1_v0iea"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
@@ -119,8 +120,9 @@ animations = [{
 radius = 9.0
 height = 28.0
 
-[node name="Player2" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
+script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qqcod")
