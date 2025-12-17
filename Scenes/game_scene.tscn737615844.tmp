@@ -2620,6 +2620,8 @@ sources/0 = SubResource("TileSetAtlasSource_6h5vk")
 [sub_resource type="GDScript" id="GDScript_vtwju"]
 script/source = "extends Area2D
 
+class_name hp_Potion
+
 func _on_body_entered(body: Node2D) -> void:
 	print(\"Healed 10HP\")
 	queue_free()
