@@ -3487,7 +3487,7 @@ position = Vector2(116, 93)
 
 [node name="ExperienceGem" parent="Node2D" instance=ExtResource("22_vtwju")]
 position = Vector2(-146, 66)
-experience = 5
+experience = 1
 
 [connection signal="area_entered" from="Player/GrabArea" to="Player" method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="Player/CollectArea" to="Player" method="_on_collect_area_area_entered"]

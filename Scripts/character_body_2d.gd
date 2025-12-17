@@ -105,9 +105,9 @@ var collected_experience = 0
 func gain_experience(amount: int) -> void:
 	current_exp += amount
 
-	set_expbar(current_exp, calculate_experiencecap())
-
 	check_levelup()
+
+	set_expbar(current_exp, calculate_experiencecap())
 
 
 func check_levelup() -> void:
