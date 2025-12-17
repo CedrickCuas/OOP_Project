@@ -456,7 +456,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Swing",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -517,11 +517,11 @@ height = 28.0
 collision_layer = 2
 script = ExtResource("1_cvnsp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_qqcod")
 animation = &"Swing"
-autoplay = "default"
-frame_progress = 0.17444561
+autoplay = "Swing"
+frame_progress = 0.70280445
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -2)
