@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3b4pfptjtgkx"
-path="res://.godot/imported/KnightIdle_strip.png-c2a8ccf5ffd8c66a0579f7aad884876b.ctex"
+uid="uid://egrmbvnr2ujn"
+path="res://.godot/imported/KnightRoll_strip.png-8a263e2e185b6751fe3e5af4d28d20fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TestCharacterAssets/KnightIdle_strip.png"
-dest_files=["res://.godot/imported/KnightIdle_strip.png-c2a8ccf5ffd8c66a0579f7aad884876b.ctex"]
+source_file="res://CharacterAssets/KnightRoll_strip.png"
+dest_files=["res://.godot/imported/KnightRoll_strip.png-8a263e2e185b6751fe3e5af4d28d20fc.ctex"]
 
 [params]
 

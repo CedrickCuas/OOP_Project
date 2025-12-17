@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdefsf7hbdyil"
-path="res://.godot/imported/KnightAttack_strip.png-503f9b44935756e5a0faea0bc3d47992.ctex"
+uid="uid://d0y47rxuxfhf5"
+path="res://.godot/imported/KnightRun_strip.png-61b4c3106e6a3de61e0f08bf5ae7baa5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TestCharacterAssets/KnightAttack_strip.png"
-dest_files=["res://.godot/imported/KnightAttack_strip.png-503f9b44935756e5a0faea0bc3d47992.ctex"]
+source_file="res://CharacterAssets/KnightRun_strip.png"
+dest_files=["res://.godot/imported/KnightRun_strip.png-61b4c3106e6a3de61e0f08bf5ae7baa5.ctex"]
 
 [params]
 

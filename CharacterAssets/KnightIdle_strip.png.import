@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhlj4esnwligj"
-path="res://.godot/imported/KnightDeath_strip.png-0a090f84b21070f387178eccbbf6ae6c.ctex"
+uid="uid://c3b4pfptjtgkx"
+path="res://.godot/imported/KnightIdle_strip.png-dab1268f293ae6bea409adee20f0feb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TestCharacterAssets/KnightDeath_strip.png"
-dest_files=["res://.godot/imported/KnightDeath_strip.png-0a090f84b21070f387178eccbbf6ae6c.ctex"]
+source_file="res://CharacterAssets/KnightIdle_strip.png"
+dest_files=["res://.godot/imported/KnightIdle_strip.png-dab1268f293ae6bea409adee20f0feb1.ctex"]
 
 [params]
 
