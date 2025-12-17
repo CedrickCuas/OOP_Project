@@ -13,6 +13,11 @@ var speed = -1  # positive speed
 @onready var collision = $CollisionShape2D
 @onready var sound: AudioStreamPlayer2D = $snd_collected
 
+
+#Exp
+@onready var expBar = get_node("%ExperienceBar")
+@onready var lblLevel = get_node("%lbl_level")
+
 func _ready():
 	# Set sprite based on experience
 	if experience < 5:
