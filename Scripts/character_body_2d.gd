@@ -12,31 +12,30 @@ var can_take_damage := true
 # Experience
 var experience_level: int = 1
 var current_exp: int = 0
-var exp_to_next_level: int = 100
 
-# Canvas layer nodes
-@onready var expBar = get_node("%ExpBar")
-@onready var lblLevel = get_node("%lbl_level")
-@onready var levelPanel = get_node("%LevelUp")
-@onready var upgradeOptions = get_node("%UpgradeOptions")
+# Canvas layer nodes (safe null checks)
+@onready var expBar = get_node_or_null("%ExpBar")
+@onready var lblLevel = get_node_or_null("%lbl_level")
+@onready var levelPanel = get_node_or_null("%LevelUp")
+@onready var upgradeOptions = get_node_or_null("%UpgradeOptions")
+@onready var sndLevelUp = get_node_or_null("%snd_levelup")
+@onready var healthbar = get_node_or_null("%HealthBar")
+@onready var lblTimer = get_node_or_null("%lblTimer")
+@onready var collectedWeapons = get_node_or_null("%CollectedWeapons")
+@onready var collectedUpgrades = get_node_or_null("%CollectedUpgrades")
 
-# Canvas Layer
+# Packed scenes
 @onready var upgradeDB = preload("res://Scripts/upgrade_db.gd")
-@onready var sndLevelUp = get_node("%snd_levelup")
-@onready var healthbar = get_node("%HealthBar")
-@onready var lblTimer = get_node("%lblTimer")
-@onready var collectedWeapons = get_node("%CollectedWeapons")
-@onready var collectedUpgrades = get_node("%CollectedUpgrades")
 @onready var itemOptions: PackedScene = preload("res://Scenes/item_options.tscn")
 
+
 func _ready():
-	# Ensure healthbar node exists before initializing
+	# Initialize health safely
+	health = MAX_HEALTH
 	if healthbar:
-		health = 100
 		healthbar.init_health(health)
 	else:
-		push_warning("HealthBar node not found! Check the node path.")
-	
+		push_warning("HealthBar node not found! Health UI will not update.")
 
 
 func _physics_process(_delta: float) -> void:
@@ -55,7 +54,8 @@ func take_damage(amount: int) -> void:
 	if not is_alive:
 		return
 	health = clamp(health - amount, 0, MAX_HEALTH)
-	healthbar.health = health
+	if healthbar:
+		healthbar.health = health
 	if health == 0:
 		die()
 
@@ -64,8 +64,9 @@ func heal(amount: int) -> void:
 	if not is_alive:
 		return
 	health = clamp(health + amount, 0, MAX_HEALTH)
-	healthbar.health = health
-	
+	if healthbar:
+		healthbar.health = health
+
 
 func die() -> void:
 	is_alive = false
@@ -109,19 +110,25 @@ func calculate_experiencecap() -> int:
 
 
 func update_expbar() -> void:
+	if not expBar:
+		push_warning("ExpBar node not found! Cannot update XP bar.")
+		return
 	var exp_cap = calculate_experiencecap()
 	expBar.max_value = exp_cap
 	expBar.value = current_exp
 
 
 func levelup() -> void:
-	lblLevel.text = "Level: %s" % experience_level
-	levelPanel.visible = true
-	get_tree().paused = true
-	
-	var tween = levelPanel.create_tween()
-	tween.tween_property(levelPanel, "position", Vector2(220, 50), 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.play()
+	if lblLevel:
+		lblLevel.text = "Level: %s" % experience_level
+	if levelPanel:
+		levelPanel.visible = true
+		get_tree().paused = true
+		var tween = levelPanel.create_tween()
+		tween.tween_property(levelPanel, "position", Vector2(220, 50), 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+		tween.play()
+	if sndLevelUp:
+		sndLevelUp.play()
 
 
 # -------------------------

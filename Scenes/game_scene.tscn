@@ -3371,7 +3371,6 @@ bg_color = Color(0.99999994, 0.79363066, 0.33067334, 1)
 [node name="GameScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-visible = false
 tile_set = SubResource("TileSet_1ixah")
 format = 2
 layer_0/name = "GroundPhys"
@@ -3420,6 +3419,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HealthBar" type="ProgressBar" parent="Player/CanvasLayer/Control"]
+unique_name_in_owner = true
 z_index = 1
 layout_mode = 0
 offset_left = 246.0
@@ -3433,6 +3433,7 @@ show_percentage = false
 script = ExtResource("20_vtwju")
 
 [node name="DamageBar" type="ProgressBar" parent="Player/CanvasLayer/Control/HealthBar"]
+unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -3453,19 +3454,12 @@ offset_right = 64.0
 offset_bottom = 39.0
 text = "Exp"
 
-[node name="Label" type="Label" parent="Player/CanvasLayer/Control/HealthBar"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = -29.0
-offset_right = 39.0
-offset_bottom = -6.0
-text = "HP"
-
 [node name="Timer" type="Timer" parent="Player/CanvasLayer/Control/HealthBar"]
 wait_time = 0.4
 one_shot = true
 
 [node name="ExperienceBar" type="ProgressBar" parent="Player/CanvasLayer/Control"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 271.0
 offset_top = 613.0
@@ -3475,6 +3469,14 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_vtwju")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gqlrj")
 value = 5.0
 show_percentage = false
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/Control/ExperienceBar"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = -69.0
+offset_right = 14.0
+offset_bottom = -46.0
+text = "HP"
 
 [node name="EnemySpawner" parent="." instance=ExtResource("20_mipjh")]
 
