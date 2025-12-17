@@ -6,7 +6,7 @@ const MAX_HEALTH := 30
 const MOVE_SPEED := 40.0
 #Exp
 var experience = 0
-var experience_level = 1
+var experience_level = 2
 var collected_experience = 0
 
 #Hp
