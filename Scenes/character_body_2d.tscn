@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn2sk4xmbvp74"]
+[gd_scene load_steps=18 format=3 uid="uid://bn2sk4xmbvp74"]
 
 [ext_resource type="Script" uid="uid://b45hfmb8xlhtv" path="res://Scripts/character_body_2d.gd" id="1_88kja"]
 [ext_resource type="Texture2D" uid="uid://c3b4pfptjtgkx" path="res://TestCharacterAssets/KnightIdle_strip.png" id="1_f50pn"]
@@ -91,6 +91,11 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebjds"]
 height = 26.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_88kja"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_it8n0"]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 5
 collision_layer = 2
@@ -108,4 +113,23 @@ frame_progress = 0.32629237
 position = Vector2(2, -16)
 shape = SubResource("CapsuleShape2D_ebjds")
 
+[node name="GrabArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+position = Vector2(3, -19)
+shape = SubResource("CircleShape2D_88kja")
+one_way_collision = true
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+position = Vector2(3, -20)
+shape = SubResource("CircleShape2D_it8n0")
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
+[connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]

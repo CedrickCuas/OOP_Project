@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://deofrwp5w1jll"]
+[gd_scene load_steps=51 format=4 uid="uid://deofrwp5w1jll"]
 
 [ext_resource type="PackedScene" uid="uid://bn2sk4xmbvp74" path="res://Scenes/character_body_2d.tscn" id="1_x87qo"]
 [ext_resource type="Texture2D" uid="uid://drfiwoekuak4m" path="res://MapAssets/mainlevbuild.png" id="2_b6fju"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://Scripts/exp_bar.gd" id="21_aq00n"]
 [ext_resource type="Script" path="res://Scripts/health_bar.gd" id="22_gqlrj"]
 [ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="22_vtwju"]
+[ext_resource type="PackedScene" uid="uid://k6w22rr5buj7" path="res://Objects/experience_gem.tscn" id="24_fnr0w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
 texture = ExtResource("2_b6fju")
@@ -3507,5 +3508,10 @@ offset_bottom = 100.0
 
 [node name="Purple_slime" parent="killzone" instance=ExtResource("22_vtwju")]
 position = Vector2(29, 18)
+
+[node name="Exp" type="Area2D" parent="."]
+
+[node name="ExperienceGem" parent="Exp" instance=ExtResource("24_fnr0w")]
+position = Vector2(-38, -36)
 
 [connection signal="timeout" from="CanvasLayer/Control/healthBar/Timer" to="CanvasLayer/Control/healthBar" method="_on_timer_timeout"]

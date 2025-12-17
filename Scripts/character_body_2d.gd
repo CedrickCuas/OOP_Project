@@ -4,8 +4,12 @@ extends CharacterBody2D
 
 const MAX_HEALTH := 30
 const MOVE_SPEED := 40.0
+#Exp
+var experience = 0
+var experience_level = 1
+var collected_experience = 0
 
-var experience_level: int = 1
+#Hp
 var health: int = MAX_HEALTH
 var is_alive := true
 
@@ -94,3 +98,15 @@ func levelup() -> void:
 		upgradeOptions.add_child(option_choice)
 
 	get_tree().paused = true
+
+
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		area.target = self
+
+
+func _on_collect_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()
+		
+		
