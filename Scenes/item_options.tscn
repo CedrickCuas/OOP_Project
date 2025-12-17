@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://so4yivx14i7l"]
+
+[ext_resource type="Script" uid="uid://x62c4k3lds3y" path="res://Scripts/item_options.gd" id="1_7b51p"]
+[ext_resource type="Texture2D" uid="uid://bdkyv4axk5xeg" path="res://MapAssets/candleA_01.png" id="2_flo4e"]
+
+[node name="ItemOptions" type="ColorRect"]
+custom_minimum_size = Vector2(150, 50)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.37036446, 0.3703645, 0.37036446, 1)
+script = ExtResource("1_7b51p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 31.0
+offset_bottom = 29.0
+color = Color(0.15487596, 0.154876, 0.15487596, 1)
+
+[node name="ItemIcon" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_flo4e")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 2.0
+offset_right = 68.0
+offset_bottom = 18.0
+theme_override_font_sizes/font_size = 10
+text = "name"
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 31.0
+offset_right = 72.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 8
+text = "Description"
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 1.0
+offset_right = 143.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 11
+text = "level"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

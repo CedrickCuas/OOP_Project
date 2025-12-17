@@ -6,6 +6,7 @@ const MAX_HEALTH := 30
 const MOVE_SPEED := 40.0
 const DAMAGE_COOLDOWN := 1.0 # seconds between taking damage
 
+var experience_level: int = 1
 var health: int = MAX_HEALTH
 var is_alive := true
 var can_take_damage := true
@@ -18,6 +19,21 @@ var exp_to_next_level: int = 100
 @onready var lblLevel = get_node("%lbl_level")
 @onready var levelPanel = get_node("%LevelUp")
 @onready var upgradeOptions = get_node("%UpgradeOptions")
+
+#Canvas Layer
+@onready var expBar = get_node("%ExperienceBar")
+@onready var lblLevel = get_node("%lbl_level")
+@onready var levelPanel = get_node("%LevelUp")
+@onready var upgradeOptions = get_node("%UpgradeOptions")
+@onready var upgradeDB = preload("res://Scripts/upgrade_db.gd")
+@onready var sndLevelUp = get_node("%snd_levelup")
+@onready var healthBar = get_node("%HealthBar")
+@onready var lblTimer = get_node("%lblTimer")
+@onready var collectedWeapons = get_node("%CollectedWeapons")
+@onready var collectedUpgrades = get_node("%CollectedUpgrades")
+@onready var itemOptions: PackedScene = preload("res://Scenes/item_options.tscn")
+
+
 
 
 func _physics_process(_delta: float) -> void:
