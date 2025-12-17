@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://663ni0y4m14v"]
 
-[ext_resource type="Script" uid="uid://by5gqveb6d7yx" path="res://Scripts/hp_potion.gd" id="1_js8mp"]
-[ext_resource type="Texture2D" uid="uid://cnaynqymn8ysd" path="res://ItemAssets/poç▌o vermelha.png" id="1_ygup6"]
+[ext_resource type="Script" path="res://Scripts/hp_potion.gd" id="1_js8mp"]
+[ext_resource type="Texture2D" uid="uid://cnaynqymn8ysd" path="res://ItemAssets/potion.png" id="1_ygup6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xc71s"]
 atlas = ExtResource("1_ygup6")
