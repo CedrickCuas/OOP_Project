@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bwff8irmqh8w7" path="res://Scenes/enemy_spawner.tscn" id="20_mipjh"]
 [ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_vtwju"]
 [ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="21_aq00n"]
+[ext_resource type="PackedScene" uid="uid://blolfp1um5oxh" path="res://Scenes/hp_potion.tscn" id="21_fnr0w"]
 [ext_resource type="PackedScene" uid="uid://cyeio3ey71jnw" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
 [ext_resource type="PackedScene" uid="uid://k6w22rr5buj7" path="res://Objects/experience_gem.tscn" id="22_vtwju"]
 
