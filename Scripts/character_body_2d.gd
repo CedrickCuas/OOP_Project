@@ -6,10 +6,12 @@ const MAX_HEALTH := 30
 const MOVE_SPEED := 40.0
 const DAMAGE_COOLDOWN := 1.0 # seconds between taking damage
 
-#Hp
+# HP
 var health: int = MAX_HEALTH
 var is_alive := true
 var can_take_damage := true
+
+# Experience
 var experience_level: int = 1
 var current_exp: int = 0
 var exp_to_next_level: int = 100
@@ -20,11 +22,7 @@ var exp_to_next_level: int = 100
 @onready var levelPanel = get_node("%LevelUp")
 @onready var upgradeOptions = get_node("%UpgradeOptions")
 
-#Canvas Layer
-@onready var expBar = get_node("%ExperienceBar")
-@onready var lblLevel = get_node("%lbl_level")
-@onready var levelPanel = get_node("%LevelUp")
-@onready var upgradeOptions = get_node("%UpgradeOptions")
+# Canvas Layer
 @onready var upgradeDB = preload("res://Scripts/upgrade_db.gd")
 @onready var sndLevelUp = get_node("%snd_levelup")
 @onready var healthBar = get_node("%HealthBar")
@@ -39,27 +37,18 @@ func _physics_process(_delta: float) -> void:
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	)
-
 	velocity = input_vector.normalized() * MOVE_SPEED if input_vector.length() > 0 else Vector2.ZERO
 	move_and_slide()
-	
-func gain_experience(amount: int) -> void:
-	current_exp += amount
-	expBar.value = current_exp
-	
-	if current_exp >= exp_to_next_level:
-		current_exp -= exp_to_next_level
-		experience_level += 1
-		levelup()
 
 
+# -------------------------
+# Health functions
+# -------------------------
 func take_damage(amount: int) -> void:
 	if not is_alive:
 		return
-
 	health = clamp(health - amount, 0, MAX_HEALTH)
 	healthbar.health = health
-
 	if health == 0:
 		die()
 
@@ -67,7 +56,6 @@ func take_damage(amount: int) -> void:
 func heal(amount: int) -> void:
 	if not is_alive:
 		return
-
 	health = clamp(health + amount, 0, MAX_HEALTH)
 	healthbar.health = health
 
@@ -84,9 +72,42 @@ func _on_hurtbox_area_entered(_area) -> void:
 		can_take_damage = false
 		await get_tree().create_timer(DAMAGE_COOLDOWN).timeout
 		can_take_damage = true
-	
 
-func levelup():
+
+# -------------------------
+# Experience / Leveling
+# -------------------------
+func gain_experience(amount: int) -> void:
+	current_exp += amount
+	check_levelup()
+	update_expbar()
+
+
+func check_levelup() -> void:
+	var exp_cap = calculate_experiencecap()
+	while current_exp >= exp_cap:
+		current_exp -= exp_cap
+		experience_level += 1
+		levelup()
+		exp_cap = calculate_experiencecap()
+
+
+func calculate_experiencecap() -> int:
+	if experience_level < 20:
+		return experience_level * 5
+	elif experience_level < 40:
+		return 95 * (experience_level - 19) * 8
+	else:
+		return 255 + (experience_level - 39) * 12
+
+
+func update_expbar() -> void:
+	var exp_cap = calculate_experiencecap()
+	expBar.max_value = exp_cap
+	expBar.value = current_exp
+
+
+func levelup() -> void:
 	lblLevel.text = "Level: %s" % experience_level
 	levelPanel.visible = true
 	get_tree().paused = true
@@ -94,3 +115,17 @@ func levelup():
 	var tween = levelPanel.create_tween()
 	tween.tween_property(levelPanel, "position", Vector2(220, 50), 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
+
+
+# -------------------------
+# Loot / Collection
+# -------------------------
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		area.target = self
+
+
+func _on_collect_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()
+		gain_experience(gem_exp)

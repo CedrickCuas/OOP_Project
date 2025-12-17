@@ -6,9 +6,8 @@ var spr_green = preload("res://MapAssets/candleA_01.png")
 var spr_blue = preload("res://MapAssets/candleA_02.png")
 var spr_red = preload("res://MapAssets/candleA_03.png")
 
-
 var target = null
-var speed = -1
+var speed = -1  # positive speed
 
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
@@ -16,7 +15,7 @@ var speed = -1
 
 func _ready():
 	if experience < 5:
-		return
+		sprite.texture = spr_green
 	elif experience < 25:
 		sprite.texture = spr_blue
 	else:
@@ -26,3 +25,13 @@ func _physics_process(delta):
 	if target != null:
 		global_position = global_position.move_toward(target.global_position, speed)
 		speed += 2*delta
+
+func collect() -> int:
+	collision.disabled = true
+	sprite.visible = false
+	sound.play()
+	sound.connect("finished", Callable(self, "_on_snd_collected_finished"))
+	return experience
+
+func _on_snd_collected_finished():
+	queue_free()
