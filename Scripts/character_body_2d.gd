@@ -87,7 +87,7 @@ func _on_hurtbox_area_entered(_area) -> void:
 # Experience / Leveling
 # -------------------------
 func _on_grab_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("loot"):
+	if area.is_in_group("loaot"):
 		area.target = self
 
 
