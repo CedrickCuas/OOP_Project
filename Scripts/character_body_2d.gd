@@ -10,7 +10,7 @@ var experience_level: int = 1
 var health: int = MAX_HEALTH
 var is_alive := true
 var can_take_damage := true
-var experience_level: int = 1
+#var experience_level: int = 1
 var current_exp: int = 0
 var exp_to_next_level: int = 100
 
@@ -21,10 +21,10 @@ var exp_to_next_level: int = 100
 @onready var upgradeOptions = get_node("%UpgradeOptions")
 
 #Canvas Layer
-@onready var expBar = get_node("%ExperienceBar")
-@onready var lblLevel = get_node("%lbl_level")
-@onready var levelPanel = get_node("%LevelUp")
-@onready var upgradeOptions = get_node("%UpgradeOptions")
+#@onready var expBar = get_node("%ExperienceBar")
+#@onready var lblLevel = get_node("%lbl_level")
+#@onready var levelPanel = get_node("%LevelUp")
+#@onready var upgradeOptions = get_node("%UpgradeOptions")
 @onready var upgradeDB = preload("res://Scripts/upgrade_db.gd")
 @onready var sndLevelUp = get_node("%snd_levelup")
 @onready var healthBar = get_node("%HealthBar")
