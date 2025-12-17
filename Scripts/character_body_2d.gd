@@ -27,8 +27,6 @@ var is_alive := true
 @onready var itemOptions: PackedScene = preload("res://Scenes/item_options.tscn")
 
 
-
-
 func _physics_process(_delta: float) -> void:
 	var input_vector := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
