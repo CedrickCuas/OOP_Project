@@ -513,11 +513,6 @@ animations = [{
 radius = 9.0
 height = 28.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_88kja"]
-radius = 50.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_it8n0"]
-
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_cvnsp")
