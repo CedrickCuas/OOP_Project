@@ -1,17 +1,18 @@
-class_name HealthBar
 extends ProgressBar
 
 @onready var timer: Timer = $Timer
-@onready var damage_bar: ProgressBar = $damageBar
+@onready var damage_bar: ProgressBar = $DamageBar
 
 var health: int = 0 : set = _set_health
 
 
-func _set_health(new_health: int) -> void:
+func _set_health(new_health):
 	var prev_health := health
-	health = clamp(new_health, 0, max_value)
+	health = min(max_value, new_health)
 	value = health
 
+	if health < 0:
+		queue_free()
 	if health < prev_health:
 		timer.start()
 	else:

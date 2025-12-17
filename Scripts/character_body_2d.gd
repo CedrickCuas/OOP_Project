@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@export var healthbar: HealthBar
-
 const MAX_HEALTH := 30
 const MOVE_SPEED := 40.0
 const DAMAGE_COOLDOWN := 1.0 # seconds between taking damage
@@ -25,11 +23,20 @@ var exp_to_next_level: int = 100
 # Canvas Layer
 @onready var upgradeDB = preload("res://Scripts/upgrade_db.gd")
 @onready var sndLevelUp = get_node("%snd_levelup")
-@onready var healthBar = get_node("%HealthBar")
+@onready var healthbar = get_node("%HealthBar")
 @onready var lblTimer = get_node("%lblTimer")
 @onready var collectedWeapons = get_node("%CollectedWeapons")
 @onready var collectedUpgrades = get_node("%CollectedUpgrades")
 @onready var itemOptions: PackedScene = preload("res://Scenes/item_options.tscn")
+
+func _ready():
+	# Ensure healthbar node exists before initializing
+	if healthbar:
+		health = 100
+		healthbar.init_health(health)
+	else:
+		push_warning("HealthBar node not found! Check the node path.")
+	
 
 
 func _physics_process(_delta: float) -> void:
@@ -58,7 +65,7 @@ func heal(amount: int) -> void:
 		return
 	health = clamp(health + amount, 0, MAX_HEALTH)
 	healthbar.health = health
-
+	
 
 func die() -> void:
 	is_alive = false
