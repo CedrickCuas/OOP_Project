@@ -1,22 +1,18 @@
-extends CharacterBody2D # Changed from Node2D so move_and_slide works
+extends BaseEnemy
 
-const SPEED = 25 # Adjust this to make the slime faster or slower
+func _ready():
+	max_health = 8
+	speed = 25.0
+	damage = 1
+	experience_drop = 5
+	super._ready()
 
-@onready var animated_sprite = $AnimatedSprite2D
-# Finds the player node automatically
-@onready var player = get_tree().get_first_node_in_group("Player")
-
-func _physics_process(_delta):
-	if player:
-		# Calculate the direction towards the player
-		var direction = global_position.direction_to(player.global_position)
-		
-		# Set velocity and move
-		velocity = direction * SPEED
-		move_and_slide()
-		
-		# Optional: Flip the sprite to face the player
-		if direction.x > 0:
-			animated_sprite.flip_h = true # Face right
-		elif direction.x < 0:
-			animated_sprite.flip_h = false  # Face left
+func _physics_process(delta):
+	if is_dead:
+		return
+	
+	super._physics_process(delta)
+	
+	# Slime uses "Walking" animation instead of "Run"
+	if animated_sprite and animated_sprite.sprite_frames.has_animation("Walking"):
+		animated_sprite.play("Walking")

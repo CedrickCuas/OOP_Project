@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bojj3h3cmjxwy"]
+[gd_scene load_steps=31 format=3 uid="uid://bojj3h3cmjxwy"]
 
 [ext_resource type="Texture2D" uid="uid://dk7xwqm1m8dv7" path="res://EnemyAssets/ogre/ogre (2).png" id="1_xdnku"]
 [ext_resource type="Texture2D" uid="uid://cwyqck410j4x6" path="res://EnemyAssets/ogre/ogre (1).png" id="2_t5uq8"]
@@ -137,7 +137,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ejjyv")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 8.0
 }, {
@@ -177,16 +177,46 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lsga3")
 }],
-"loop": true,
+"loop": false,
 "name": &"Spawn",
 "speed": 8.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdnku"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5uq8"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7kbme"]
+radius = 7.0
+height = 22.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g4nf1")
-animation = &"Spawn"
-frame_progress = 0.049201824
+animation = &"Death"
+autoplay = "Spawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_xdnku")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_t5uq8")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_7kbme")
