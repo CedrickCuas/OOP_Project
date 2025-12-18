@@ -3484,7 +3484,6 @@ text = "Level : 1
 [node name="LevelUp" type="Panel" parent="Player/CanvasLayer/Control"]
 unique_name_in_owner = true
 process_mode = 2
-visible = false
 layout_mode = 0
 offset_left = 1181.0
 offset_top = 29.0

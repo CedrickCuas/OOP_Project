@@ -141,7 +141,8 @@ func levelup():
 		var option_choice = itemOptions.instantiate()
 		upgradeOptions.add_child(option_choice)
 		options += 1
-	get_tree().paused = false
+	get_tree().paused = true
+
 	
 func upgrade_character(upgrade):
 	var option_children = upgradeOptions.get_children()
