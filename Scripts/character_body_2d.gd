@@ -19,13 +19,11 @@ var collected_experience = 0
 @onready var lblLevel = get_node("%lbl_level")
 @onready var levelPanel = get_node("%LevelUp")
 @onready var upgradeOptions = get_node("%UpgradeOptions")
+@onready var itemOptions = preload("res://Scenes/item_option.tscn")
 @onready var healthbar = get_node_or_null("%HealthBar")
 @onready var lblTimer = get_node_or_null("%lblTimer")
 @onready var collectedWeapons = get_node_or_null("%CollectedWeapons")
 @onready var collectedUpgrades = get_node_or_null("%CollectedUpgrades")
-
-# Packed scenes
-@onready var itemOptions: PackedScene = preload("res://Scenes/item_options.tscn")
 
 
 func _ready():
@@ -34,10 +32,8 @@ func _ready():
 		healthbar.init_health(health)
 	else:
 		push_warning("HealthBar node not found! Health UI will not update.")
-
-	# initialize EXP bar correctly
 	set_expbar(experience, calculate_experiencecap())
-
+	
 
 func _physics_process(_delta: float) -> void:
 	var input_vector := Vector2(
@@ -107,7 +103,7 @@ func calculate_experience(gem_exp):
 		lblLevel.text = str("Level: ",experience_level)
 		experience = 0
 		exp_required = calculate_experiencecap()
-		calculate_experience(0)
+		levelup()
 	else:
 		experience += collected_experience
 		collected_experience = 0
@@ -130,3 +126,29 @@ func calculate_experiencecap():
 func set_expbar(set_value = 1, set_max_value = 100):
 	expBar.value = set_value
 	expBar.max_value = set_max_value
+
+func levelup():
+	lblLevel.text = str("Level: ", experience_level)
+	var tween = levelPanel.create_tween()
+	tween.tween_property(levelPanel, "position", Vector2(913, 28), 0.2)\
+		.set_trans(Tween.TRANS_QUINT)\
+		.set_ease(Tween.EASE_IN)
+	tween.play()
+	levelPanel.visible = true
+	var options = 0
+	var optionsmax = 3
+	while options < optionsmax:
+		var option_choice = itemOptions.instantiate()
+		upgradeOptions.add_child(option_choice)
+		options += 1
+	get_tree().paused = false
+	
+func upgrade_character(upgrade):
+	var option_children = upgradeOptions.get_children()
+	for i in option_children: 
+		i.queue_free()
+	levelPanel.visible = false
+	levelPanel.position = Vector2(1181,29)
+	get_tree().paused = false
+	calculate_experience(0)
+	

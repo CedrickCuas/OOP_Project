@@ -3372,6 +3372,7 @@ bg_color = Color(0.99999994, 0.79363066, 0.33067334, 1)
 [node name="GameScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource("TileSet_1ixah")
 format = 2
 layer_0/name = "GroundPhys"
@@ -3481,19 +3482,30 @@ text = "Level : 1
 "
 
 [node name="LevelUp" type="Panel" parent="Player/CanvasLayer/Control"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1181.0
+offset_top = 29.0
+offset_right = 1381.0
+offset_bottom = 278.99976
 
 [node name="lbl_LevelUP" type="Label" parent="Player/CanvasLayer/Control/LevelUp"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 200.0
+offset_bottom = 50.0
+text = "Level UP !"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UpgradeOptions" type="VBoxContainer" parent="Player/CanvasLayer/Control/LevelUp"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 190.0
+offset_bottom = 100.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("20_mipjh")]
 
