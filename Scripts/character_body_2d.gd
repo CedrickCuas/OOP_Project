@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const MAX_HEALTH := 30
-const MOVE_SPEED := 300.0
+const MOVE_SPEED := 50.0
 const DAMAGE_COOLDOWN := 1.0
 
 # HP
