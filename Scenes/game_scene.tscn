@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_vtwju"]
 [ext_resource type="PackedScene" uid="uid://663ni0y4m14v" path="res://Scenes/hp_potion.tscn" id="21_fnr0w"]
 [ext_resource type="PackedScene" uid="uid://cyeio3ey71jnw" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
-[ext_resource type="Script" path="res://Scripts/spawn_info.gd" id="22_gqlrj"]
+[ext_resource type="Script" uid="uid://bl4x805u1l8iw" path="res://Scripts/spawn_info.gd" id="22_gqlrj"]
 [ext_resource type="PackedScene" uid="uid://k6w22rr5buj7" path="res://Objects/experience_gem.tscn" id="22_vtwju"]
 [ext_resource type="PackedScene" uid="uid://rkbfjt3prwai" path="res://Scenes/bat.tscn" id="25_gqlrj"]
 
@@ -3381,7 +3381,6 @@ metadata/_custom_type_script = "uid://bl4x805u1l8iw"
 [node name="GameScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-visible = false
 tile_set = SubResource("TileSet_1ixah")
 format = 2
 layer_0/name = "GroundPhys"
@@ -3491,7 +3490,7 @@ text = "Level : 1
 
 [node name="LevelUp" type="Panel" parent="Player/CanvasLayer/Control"]
 unique_name_in_owner = true
-process_mode = 2
+process_mode = 3
 layout_mode = 0
 offset_left = 1181.0
 offset_top = 29.0
