@@ -201,8 +201,10 @@ shape = SubResource("CapsuleShape2D_uudfh")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+light_mask = 0
+visibility_layer = 0
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_qx0x6")
