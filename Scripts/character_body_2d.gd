@@ -29,7 +29,8 @@ var collected_experience = 0
 func _ready():
 	health = MAX_HEALTH
 	if healthbar:
-		healthbar.init_health(health)
+		healthbar.init_health(MAX_HEALTH)  # Initializes max and current
+		healthbar.health = health           # <-- Use the property, not update_health()
 	else:
 		push_warning("HealthBar node not found! Health UI will not update.")
 	set_expbar(experience, calculate_experiencecap())
@@ -52,7 +53,7 @@ func take_damage(amount: int) -> void:
 		return
 	health = clamp(health - amount, 0, MAX_HEALTH)
 	if healthbar:
-		healthbar.health = health
+		healthbar.health = health  # <-- Use property
 	if health == 0:
 		die()
 
@@ -62,8 +63,7 @@ func heal(amount: int) -> void:
 		return
 	health = clamp(health + amount, 0, MAX_HEALTH)
 	if healthbar:
-		healthbar.health = health
-
+		healthbar.health = health  # <-- Use property
 
 func die() -> void:
 	is_alive = false
