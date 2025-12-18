@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=3 format=3 uid="uid://so4yivx14i7l"]
 
 [ext_resource type="Script" uid="uid://x62c4k3lds3y" path="res://Scripts/item_options.gd" id="1_7b51p"]
+=======
+[gd_scene load_steps=3 format=3 uid="uid://dwor31ita3ex1"]
+
+[ext_resource type="Script" path="res://Scripts/item_options.gd" id="1_7b51p"]
+>>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://bdkyv4axk5xeg" path="res://MapAssets/candleA_01.png" id="2_flo4e"]
 
 [node name="ItemOptions" type="ColorRect"]

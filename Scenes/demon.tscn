@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bqpi5sxl4va1m"]
+[gd_scene load_steps=29 format=3 uid="uid://bqpi5sxl4va1m"]
 
 [ext_resource type="Texture2D" uid="uid://cdvdetmlrbjlw" path="res://EnemyAssets/demon/attack_demon.png" id="1_30acj"]
 [ext_resource type="Texture2D" uid="uid://cvmel2bltdiyy" path="res://EnemyAssets/demon/death_demon.png" id="2_sku76"]
@@ -180,10 +180,6 @@ height = 22.0
 radius = 7.0
 height = 22.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jagv4"]
-radius = 7.0
-height = 20.0
-
 [node name="demon" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -196,8 +192,8 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_30acj")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 128
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 2)
@@ -210,7 +206,3 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_ydh87")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_jagv4")

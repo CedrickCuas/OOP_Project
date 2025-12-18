@@ -37,6 +37,11 @@ func _ready():
 	
 	set_expbar(current_exp, calculate_experiencecap())
 	
+	# Connect HurtBox signal
+	var hurtbox = $HurtBox
+	if hurtbox and not hurtbox.area_entered.is_connected(_on_hurtbox_area_entered):
+		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	
 	# Spawn starting weapon
 	spawn_sword()
 

@@ -1,8 +1,8 @@
 extends BaseEnemy
 
 func _ready():
-	max_health = 6
-	speed = 35.0  # Bats are faster
+	max_health = 2
+	speed = 30.0  # Bats are faster
 	damage = 1
 	experience_drop = 3
 	super._ready()

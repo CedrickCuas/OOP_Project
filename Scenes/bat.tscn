@@ -178,15 +178,15 @@ animation = &"spawn"
 autoplay = "spawn"
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 128
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_50dnf")
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 2
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_mqh3e")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://deofrwp5w1jll"]
+[gd_scene load_steps=55 format=4 uid="uid://deofrwp5w1jll"]
 
 [ext_resource type="Texture2D" uid="uid://drfiwoekuak4m" path="res://MapAssets/mainlevbuild.png" id="2_b6fju"]
 [ext_resource type="Texture2D" uid="uid://ddoij4o26ytk6" path="res://MapAssets/decorative.png" id="3_6h5vk"]
@@ -18,17 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://eyor8hpbpjwh" path="res://MapAssets/candleB_04.png" id="14_5q52j"]
 [ext_resource type="Texture2D" uid="uid://dlyp7ppramcwh" path="res://MapAssets/torch_1.png" id="18_e624q"]
 [ext_resource type="Texture2D" uid="uid://dt6teux3nqgk6" path="res://MapAssets/torch_2.png" id="19_pbc1q"]
+[ext_resource type="PackedScene" uid="uid://cm0x0qwan1ak8" path="res://Scenes/sword_weapon.tscn" id="20_kiiqx"]
 [ext_resource type="PackedScene" uid="uid://bwff8irmqh8w7" path="res://Scenes/enemy_spawner.tscn" id="20_mipjh"]
 [ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_vtwju"]
 [ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="21_aq00n"]
 [ext_resource type="PackedScene" uid="uid://663ni0y4m14v" path="res://Scenes/hp_potion.tscn" id="21_fnr0w"]
-[ext_resource type="PackedScene" uid="uid://bqpi5sxl4va1m" path="res://Scenes/demon.tscn" id="21_m8c54"]
-[ext_resource type="PackedScene" uid="uid://3pmpkay0htpt" path="res://Scenes/demon2.tscn" id="22_5q52j"]
 [ext_resource type="PackedScene" uid="uid://cyeio3ey71jnw" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
 [ext_resource type="PackedScene" uid="uid://k6w22rr5buj7" path="res://Objects/experience_gem.tscn" id="22_vtwju"]
-[ext_resource type="Script" uid="uid://dicdrxdtbneai" path="res://Scripts/demon2.gd" id="23_e624q"]
 [ext_resource type="PackedScene" uid="uid://rkbfjt3prwai" path="res://Scenes/bat.tscn" id="25_gqlrj"]
-[ext_resource type="Script" uid="uid://c5e5ld6gugy2j" path="res://Scripts/demon.gd" id="25_pbc1q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
 texture = ExtResource("2_b6fju")
@@ -3396,6 +3393,10 @@ tile_set = SubResource("TileSet_nys34")
 
 [node name="Player" parent="." instance=ExtResource("22_817jg")]
 position = Vector2(-2, 87)
+collision_layer = 143
+collision_mask = 134
+
+[node name="SwordWeapon" parent="Player" instance=ExtResource("20_kiiqx")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -3)
@@ -3487,16 +3488,8 @@ text = "HP"
 
 [node name="EnemySpawner" parent="." instance=ExtResource("20_mipjh")]
 
-[node name="demon2" parent="." instance=ExtResource("22_5q52j")]
-position = Vector2(98, 76)
-script = ExtResource("23_e624q")
-
-[node name="demon" parent="." instance=ExtResource("21_m8c54")]
-position = Vector2(84, 110)
-script = ExtResource("25_pbc1q")
-
 [node name="bat" parent="." instance=ExtResource("25_gqlrj")]
-position = Vector2(133, 108)
+position = Vector2(59, 93)
 
 [node name="Purple_slime" parent="." instance=ExtResource("21_aq00n")]
 position = Vector2(115, 21)
