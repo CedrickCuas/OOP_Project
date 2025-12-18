@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://3pmpkay0htpt"]
+[gd_scene load_steps=29 format=3 uid="uid://3pmpkay0htpt"]
 
 [ext_resource type="Texture2D" uid="uid://ueb8s7wwoq5d" path="res://EnemyAssets/demon2/demon (3).png" id="1_c74hm"]
 [ext_resource type="Texture2D" uid="uid://csc4bweue7s3t" path="res://EnemyAssets/demon2/demon (2).png" id="2_uudfh"]
@@ -123,7 +123,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dn25p")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 8.0
 }, {
@@ -163,16 +163,46 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a73vf")
 }],
-"loop": true,
+"loop": false,
 "name": &"Spawn",
 "speed": 10.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c74hm"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uudfh"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qx0x6"]
+radius = 7.0
+height = 22.0
 
 [node name="demon2" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2urh2")
-animation = &"Spawn"
-frame_progress = 0.7280238
+animation = &"Death"
+autoplay = "Spawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_c74hm")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_uudfh")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_qx0x6")
