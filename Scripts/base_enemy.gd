@@ -73,6 +73,7 @@ func die():
 	
 	# Drop experience
 	drop_experience()
+	drop_potion_chance()
 	
 	# Play death animation
 	if animated_sprite.sprite_frames.has_animation("Death"):
@@ -87,13 +88,13 @@ func drop_experience():
 	gem.experience = experience_drop
 	get_parent().call_deferred("add_child", gem)
 	
-# New function to handle the 20% drop chance
-func check_for_potion_drop():
-	#var roll = randf() # Generates a float between 0.0 and 1.0
-	#if roll <= 0.80:
-	var potion = hp_potion_scene.instantiate()
-	potion.global_position = global_position
-	get_parent().call_deferred("add_child", potion)
+func drop_potion_chance():
+	var chance = randf() # Generates a number between 0.0 and 1.0
+	if chance <= 1: # 0.2 represents a 20% probability
+		var potion = hp_potion_scene.instantiate()
+		potion.global_position = global_position
+		get_parent().call_deferred("add_child", potion)
+	
 		
 func _on_hitbox_area_entered(area: Area2D):
 	# This will be connected to player's weapon attacks
