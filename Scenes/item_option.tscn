@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://so4yivx14i7l"]
 
-[ext_resource type="Script" uid="uid://x62c4k3lds3y" path="res://Scripts/item_options.gd" id="1_7b51p"]
-[ext_resource type="Texture2D" uid="uid://bdkyv4axk5xeg" path="res://MapAssets/candleA_01.png" id="2_flo4e"]
+[ext_resource type="Script" uid="uid://x62c4k3lds3y" path="res://Scripts/item_option.gd" id="1_61o2r"]
+[ext_resource type="Texture2D" uid="uid://bdkyv4axk5xeg" path="res://MapAssets/candleA_01.png" id="2_q6ebh"]
 
-[node name="ItemOptions" type="ColorRect"]
+[node name="ItemOption" type="ColorRect"]
 custom_minimum_size = Vector2(150, 50)
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0.37036446, 0.3703645, 0.37036446, 1)
-script = ExtResource("1_7b51p")
+script = ExtResource("1_61o2r")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -29,7 +29,7 @@ offset_right = -6.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_flo4e")
+texture = ExtResource("2_q6ebh")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0

@@ -16,9 +16,11 @@ func _input(event):
 		
 
 
+
 func _on_mouse_entered() -> void:
 	mouse_over = true
 
 
 func _on_mouse_exited() -> void:
 	mouse_over = false
+	
