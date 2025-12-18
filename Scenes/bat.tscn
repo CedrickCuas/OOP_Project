@@ -174,7 +174,7 @@ shape = SubResource("CircleShape2D_wt6c1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_37g53")
-animation = &"spawn"
+animation = &"Run"
 autoplay = "spawn"
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -185,8 +185,8 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_50dnf")
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 2
+collision_layer = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_mqh3e")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=78 format=3 uid="uid://cyeio3ey71jnw"]
+[gd_scene load_steps=79 format=3 uid="uid://cyeio3ey71jnw"]
 
 [ext_resource type="Script" uid="uid://b45hfmb8xlhtv" path="res://Scripts/character_body_2d.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cuc6qamhtc8yr" path="res://CharacterAssets/noBKG_KnightIdle_strip.png" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://c4d8uotgiavmf" path="res://CharacterAssets/noBKG_KnightRun_strip.png" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://btj5fiwohxc0v" path="res://CharacterAssets/noBKG_KnightAttack_strip.png" id="3_vgqql"]
+[ext_resource type="PackedScene" uid="uid://cm0x0qwan1ak8" path="res://Scenes/sword_weapon.tscn" id="5_pbq55"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
 atlas = ExtResource("2_6t5aa")
@@ -555,3 +556,5 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_t38ji")
+
+[node name="SwordWeapon" parent="." instance=ExtResource("5_pbq55")]
