@@ -63,7 +63,7 @@ func take_damage(amount: int) -> void:
 		return
 	health = clamp(health - amount, 0, MAX_HEALTH)
 	if healthbar:
-		healthbar.health = health
+		healthbar.set_health(health)  # <-- change here
 	if health == 0:
 		die()
 
@@ -72,7 +72,7 @@ func heal(amount: int) -> void:
 		return
 	health = clamp(health + amount, 0, MAX_HEALTH)
 	if healthbar:
-		healthbar.health = health
+		healthbar.set_health(health)  
 
 func die() -> void:
 	is_alive = false
