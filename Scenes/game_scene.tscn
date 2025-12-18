@@ -3381,6 +3381,7 @@ metadata/_custom_type_script = "uid://bl4x805u1l8iw"
 [node name="GameScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource("TileSet_1ixah")
 format = 2
 layer_0/name = "GroundPhys"
@@ -3456,17 +3457,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_fnr0w")
 value = 80.0
 show_percentage = false
 
-[node name="Label2" type="Label" parent="Player/CanvasLayer/Control/HealthBar/DamageBar"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 15.0
-offset_right = 42.0
-offset_bottom = 38.0
-text = "Exp"
-
 [node name="Timer" type="Timer" parent="Player/CanvasLayer/Control/HealthBar"]
 wait_time = 0.4
 one_shot = true
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/Control/HealthBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -25.0
+offset_right = 40.0
+offset_bottom = -2.0
+text = "HP"
 
 [node name="ExperienceBar" type="ProgressBar" parent="Player/CanvasLayer/Control"]
 unique_name_in_owner = true
@@ -3479,14 +3480,39 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_vtwju")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gqlrj")
 show_percentage = false
 
-[node name="Label" type="Label" parent="Player/CanvasLayer/Control/ExperienceBar"]
+[node name="lbl_level" type="Label" parent="Player/CanvasLayer/Control/ExperienceBar"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -2.0
-offset_top = -64.0
-offset_right = 38.0
-offset_bottom = -41.0
-text = "HP"
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = -1.0
+text = "Level : 1
+"
+
+[node name="LevelUp" type="Panel" parent="Player/CanvasLayer/Control"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 0
+offset_left = 1181.0
+offset_top = 29.0
+offset_right = 1381.0
+offset_bottom = 278.99976
+
+[node name="lbl_LevelUP" type="Label" parent="Player/CanvasLayer/Control/LevelUp"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 50.0
+text = "Level UP !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="Player/CanvasLayer/Control/LevelUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 190.0
+offset_bottom = 100.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("20_mipjh")]
 spawns = Array[ExtResource("22_gqlrj")]([SubResource("Resource_cdqhx")])
@@ -3497,8 +3523,8 @@ spawns = Array[ExtResource("22_gqlrj")]([SubResource("Resource_cdqhx")])
 position = Vector2(-146, 66)
 
 [node name="ExperienceGem2" parent="Node2D" instance=ExtResource("22_vtwju")]
-position = Vector2(-263, 52)
-experience = 5
+position = Vector2(-170, 33)
+experience = 2
 
 [node name="hp_potion2" parent="." instance=ExtResource("21_fnr0w")]
 position = Vector2(-270, 104)
