@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var damage: int = 5
-@export var attack_duration: float = 0.2
+@export var attack_duration: float = 2
 
 @onready var attack_timer: Timer = $AttackTimer
 

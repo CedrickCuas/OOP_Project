@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://3pmpkay0htpt"]
+[gd_scene load_steps=30 format=3 uid="uid://3pmpkay0htpt"]
 
 [ext_resource type="Texture2D" uid="uid://ueb8s7wwoq5d" path="res://EnemyAssets/demon2/demon (3).png" id="1_c74hm"]
+[ext_resource type="Script" uid="uid://dicdrxdtbneai" path="res://Scripts/demon2.gd" id="1_uudfh"]
 [ext_resource type="Texture2D" uid="uid://csc4bweue7s3t" path="res://EnemyAssets/demon2/demon (2).png" id="2_uudfh"]
 [ext_resource type="Texture2D" uid="uid://21rh03k1l3sn" path="res://EnemyAssets/demon2/demon (4).png" id="3_qx0x6"]
 [ext_resource type="Texture2D" uid="uid://dcg14awarynbg" path="res://EnemyAssets/demon2/demon (1).png" id="4_mukb3"]
@@ -181,6 +182,7 @@ radius = 7.0
 height = 22.0
 
 [node name="demon2" type="CharacterBody2D"]
+script = ExtResource("1_uudfh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2urh2")
@@ -200,8 +202,8 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_uudfh")
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 2
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 2)

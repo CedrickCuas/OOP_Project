@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cmydjhnjbo2cu" path="res://Scripts/purple_slime.gd" id="1_4sdck"]
 [ext_resource type="Texture2D" uid="uid://w3jpydwtumxs" path="res://EnemyAssets/Slime Mob.png" id="1_krsyl"]
-[ext_resource type="PackedScene" uid="uid://caldsy25bholu" path="res://Scenes/killzone.tscn" id="2_4sdck"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dk5w8"]
 atlas = ExtResource("1_krsyl")
@@ -96,11 +95,17 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_djree"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krsyl"]
+radius = 7.0
+height = 22.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4sdck"]
-radius = 9.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4sdck"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dk5w8"]
+radius = 7.0
+height = 22.0
 
 [node name="Purple_slime" type="CharacterBody2D"]
 script = ExtResource("1_4sdck")
@@ -111,16 +116,22 @@ animation = &"Walking"
 autoplay = "Walking"
 frame_progress = 0.99282706
 
-[node name="killzone" parent="." instance=ExtResource("2_4sdck")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_krsyl")
 
-[node name="KillCollision" type="CollisionShape2D" parent="killzone"]
-shape = SubResource("CircleShape2D_djree")
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
-[node name="RayCast2D_Right" type="RayCast2D" parent="."]
-target_position = Vector2(15, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_4sdck")
 
-[node name="RayCast2D_Left" type="RayCast2D" parent="."]
-target_position = Vector2(-15, 0)
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
-[node name="ObstacleCollision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4sdck")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_dk5w8")

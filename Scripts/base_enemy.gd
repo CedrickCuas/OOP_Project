@@ -90,7 +90,7 @@ func drop_experience():
 	
 func drop_potion_chance():
 	var chance = randf() # Generates a number between 0.0 and 1.0
-	if chance <= 1: # 0.2 represents a 20% probability
+	if chance <= 0.2: # 0.2 represents a 20% probability
 		var potion = hp_potion_scene.instantiate()
 		potion.global_position = global_position
 		get_parent().call_deferred("add_child", potion)

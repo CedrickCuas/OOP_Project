@@ -1,7 +1,7 @@
 extends BaseEnemy
 
 func _ready():
-	max_health = 25
+	max_health = 100
 	speed = 18.0  # Ogres are slow but very tanky
 	damage = 4
 	experience_drop = 20

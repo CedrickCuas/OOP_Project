@@ -1,7 +1,7 @@
 extends BaseEnemy
 
 func _ready():
-	max_health = 15
+	max_health = 50
 	speed = 30.0
 	damage = 2
 	experience_drop = 10

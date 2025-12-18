@@ -1,6 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://bqpi5sxl4va1m"]
 
 [ext_resource type="Texture2D" uid="uid://cdvdetmlrbjlw" path="res://EnemyAssets/demon/attack_demon.png" id="1_30acj"]
+[ext_resource type="Script" uid="uid://c5e5ld6gugy2j" path="res://Scripts/demon.gd" id="1_sku76"]
 [ext_resource type="Texture2D" uid="uid://cvmel2bltdiyy" path="res://EnemyAssets/demon/death_demon.png" id="2_sku76"]
 [ext_resource type="Texture2D" uid="uid://bs1ls3g4wbond" path="res://EnemyAssets/demon/run_demon.png" id="3_ydh87"]
 [ext_resource type="Texture2D" uid="uid://cvski4c8l53ap" path="res://EnemyAssets/demon/spawn_demon.png" id="4_jagv4"]
@@ -168,23 +169,17 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30acj"]
-radius = 7.0
-height = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_30acj"]
+radius = 9.219544
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sku76"]
-radius = 7.0
-height = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_sku76"]
+radius = 9.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydh87"]
-radius = 7.0
-height = 22.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jagv4"]
-radius = 7.0
-height = 20.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydh87"]
+radius = 9.0
 
 [node name="demon" type="CharacterBody2D"]
+script = ExtResource("1_sku76")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cbkay")
@@ -192,25 +187,18 @@ animation = &"Attack"
 autoplay = "Spawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_30acj")
+shape = SubResource("CircleShape2D_30acj")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_sku76")
+shape = SubResource("CircleShape2D_sku76")
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 2
+collision_layer = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_ydh87")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_jagv4")
+shape = SubResource("CircleShape2D_ydh87")

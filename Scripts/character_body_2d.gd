@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const MAX_HEALTH := 30
-const MOVE_SPEED := 200.0
+const MOVE_SPEED := 300.0
 const DAMAGE_COOLDOWN := 1.0
 
 # HP
@@ -25,7 +25,7 @@ var collected_experience = 0
 @onready var lblTimer = get_node_or_null("%lblTimer")
 @onready var collectedWeapons = get_node_or_null("%CollectedWeapons")
 @onready var collectedUpgrades = get_node_or_null("%CollectedUpgrades")
-
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Weapon
 var sword_scene = preload("res://Scenes/sword_weapon.tscn")
@@ -56,6 +56,11 @@ func _physics_process(_delta: float) -> void:
 	)
 	velocity = input_vector.normalized() * MOVE_SPEED if input_vector.length() > 0 else Vector2.ZERO
 	move_and_slide()
+	
+	if input_vector.x > 0:
+		animated_sprite.flip_h = false # Facing right
+	elif input_vector.x < 0:
+		animated_sprite.flip_h = true  # Facing left
 
 # Health functions
 func take_damage(amount: int) -> void:

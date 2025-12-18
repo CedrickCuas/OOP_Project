@@ -1,5 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://dwkxgf2unio73"]
+[gd_scene load_steps=30 format=3 uid="uid://dwkxgf2unio73"]
 
+[ext_resource type="Script" uid="uid://cg0qroljs58xh" path="res://Scripts/knight.gd" id="1_5h62n"]
 [ext_resource type="Texture2D" uid="uid://5xxmtodbshys" path="res://EnemyAssets/knight/knight (1).png" id="1_rslyr"]
 [ext_resource type="Texture2D" uid="uid://c1tic7vmv6ubw" path="res://EnemyAssets/knight/knight (2).png" id="2_5h62n"]
 [ext_resource type="Texture2D" uid="uid://h1ds2xq80bvd" path="res://EnemyAssets/knight/knight (3).png" id="3_nf5tg"]
@@ -181,6 +182,7 @@ radius = 7.0
 height = 22.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_5h62n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_11dsk")
@@ -201,7 +203,7 @@ shape = SubResource("CapsuleShape2D_5h62n")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 2)

@@ -1,10 +1,10 @@
 extends BaseEnemy
 
 func _ready():
-	max_health = 80
-	speed = 30.0
-	damage = 2
-	experience_drop = 10
+	max_health = 500
+	speed = 40 # Bats are faster
+	damage = 1
+	experience_drop = 3
 	super._ready()
 
 func _physics_process(delta):
@@ -23,5 +23,5 @@ func _physics_process(delta):
 			animated_sprite.flip_h = false
 		
 		# Play run animation
-		if animated_sprite.sprite_frames.has_animation("Run"):
-			animated_sprite.play("Run")
+		if animated_sprite.sprite_frames.has_animation("Walking"):
+			animated_sprite.play("Walking")
