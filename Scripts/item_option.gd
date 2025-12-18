@@ -2,11 +2,12 @@ extends ColorRect
 
 var mouse_over = false
 var item = null
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player = get_tree().get_first_node_in_group("Player")
 
 signal selected_upgrade(upgrade)
 
 func _ready():
+	#if player:
 	connect("selected_upgrade", Callable(player, "upgrade_character"))
 
 func _input(event):
