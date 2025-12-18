@@ -10,21 +10,21 @@ var is_alive := true
 var can_take_damage := true
 
 # Experience
-var current_exp: int = 0
+var experience = 0
+var experience_level = 1
+var collected_experience = 0
 
 # Canvas layer nodes (safe null checks)
 @onready var expBar = get_node("%ExperienceBar")
 @onready var lblLevel = get_node("%lbl_level")
-@onready var levelPanel = get_node_or_null("%LevelUp")
-@onready var upgradeOptions = get_node_or_null("%UpgradeOptions")
-@onready var sndLevelUp = get_node_or_null("%snd_levelup")
+@onready var levelPanel = get_node("%LevelUp")
+@onready var upgradeOptions = get_node("%UpgradeOptions")
 @onready var healthbar = get_node_or_null("%HealthBar")
 @onready var lblTimer = get_node_or_null("%lblTimer")
 @onready var collectedWeapons = get_node_or_null("%CollectedWeapons")
 @onready var collectedUpgrades = get_node_or_null("%CollectedUpgrades")
 
 # Packed scenes
-@onready var upgradeDB = preload("res://Scripts/upgrade_db.gd")
 @onready var itemOptions: PackedScene = preload("res://Scenes/item_options.tscn")
 
 
@@ -35,8 +35,8 @@ func _ready():
 	else:
 		push_warning("HealthBar node not found! Health UI will not update.")
 
-	# ✅ FIX: initialize EXP bar
-	set_expbar(current_exp, calculate_experiencecap())
+	# initialize EXP bar correctly
+	set_expbar(experience, calculate_experiencecap())
 
 
 func _physics_process(_delta: float) -> void:
@@ -94,40 +94,20 @@ func _on_grab_area_area_entered(area: Area2D) -> void:
 func _on_collect_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
-		gain_experience(gem_exp)
-
-
-var experience = 0
-var experience_level = 1
-var collected_experience = 0
-
-
-func gain_experience(amount: int) -> void:
-	current_exp += amount
-
-	check_levelup()
-
-	set_expbar(current_exp, calculate_experiencecap())
-
-
-func check_levelup() -> void:
-	var exp_cap = calculate_experiencecap()
-	while current_exp >= exp_cap:
-		current_exp -= exp_cap
-		experience_level += 1
-		#levelup()
-		exp_cap = calculate_experiencecap()
+		calculate_experience(gem_exp)
 
 
 func calculate_experience(gem_exp):
 	var exp_required = calculate_experiencecap()
 	collected_experience += gem_exp
-	if experience + collected_experience >= exp_required:
+
+	if experience + collected_experience > exp_required:
 		collected_experience -= exp_required - experience
 		experience_level += 1
+		lblLevel.text = str("Level: ",experience_level)
 		experience = 0
 		exp_required = calculate_experiencecap()
-		#levelup()
+		calculate_experience(0)
 	else:
 		experience += collected_experience
 		collected_experience = 0
@@ -143,6 +123,7 @@ func calculate_experiencecap():
 		exp_cap = 95 * (experience_level - 19) * 8
 	else:
 		exp_cap = 255 + (experience_level - 39) * 12
+
 	return exp_cap
 
 

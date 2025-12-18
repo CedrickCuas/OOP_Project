@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_vtwju"]
 [ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="21_aq00n"]
 [ext_resource type="PackedScene" uid="uid://blolfp1um5oxh" path="res://Scenes/hp_potion.tscn" id="21_fnr0w"]
-[ext_resource type="PackedScene" uid="uid://cyeio3ey71jnw" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
+[ext_resource type="PackedScene" uid="uid://b5a3m21fl7u71" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
 [ext_resource type="PackedScene" uid="uid://k6w22rr5buj7" path="res://Objects/experience_gem.tscn" id="22_vtwju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
@@ -3448,17 +3448,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_fnr0w")
 value = 80.0
 show_percentage = false
 
-[node name="Label2" type="Label" parent="Player/CanvasLayer/Control/HealthBar/DamageBar"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 15.0
-offset_right = 42.0
-offset_bottom = 38.0
-text = "Exp"
-
 [node name="Timer" type="Timer" parent="Player/CanvasLayer/Control/HealthBar"]
 wait_time = 0.4
 one_shot = true
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/Control/HealthBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -25.0
+offset_right = 40.0
+offset_bottom = -2.0
+text = "HP"
 
 [node name="ExperienceBar" type="ProgressBar" parent="Player/CanvasLayer/Control"]
 unique_name_in_owner = true
@@ -3471,14 +3471,29 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_vtwju")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gqlrj")
 show_percentage = false
 
-[node name="Label" type="Label" parent="Player/CanvasLayer/Control/ExperienceBar"]
+[node name="lbl_level" type="Label" parent="Player/CanvasLayer/Control/ExperienceBar"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -2.0
-offset_top = -64.0
-offset_right = 38.0
-offset_bottom = -41.0
-text = "HP"
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = -1.0
+text = "Level : 1
+"
+
+[node name="LevelUp" type="Panel" parent="Player/CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="lbl_LevelUP" type="Label" parent="Player/CanvasLayer/Control/LevelUp"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="Player/CanvasLayer/Control/LevelUp"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("20_mipjh")]
 
@@ -3488,12 +3503,20 @@ position = Vector2(116, 93)
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="ExperienceGem" parent="Node2D" instance=ExtResource("22_vtwju")]
-position = Vector2(-146, 66)
-experience = 1
+position = Vector2(-132, 55)
+experience = 2
+
+[node name="ExperienceGem4" parent="Node2D" instance=ExtResource("22_vtwju")]
+position = Vector2(-164, 62)
+experience = 2
+
+[node name="ExperienceGem3" parent="Node2D" instance=ExtResource("22_vtwju")]
+position = Vector2(-137, 29)
+experience = 2
 
 [node name="ExperienceGem2" parent="Node2D" instance=ExtResource("22_vtwju")]
-position = Vector2(-263, 52)
-experience = 5
+position = Vector2(-170, 33)
+experience = 2
 
 [node name="hp_potion2" parent="." instance=ExtResource("21_fnr0w")]
 position = Vector2(-270, 104)
