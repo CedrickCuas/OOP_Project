@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://deofrwp5w1jll"]
+[gd_scene load_steps=56 format=4 uid="uid://deofrwp5w1jll"]
 
 [ext_resource type="Texture2D" uid="uid://drfiwoekuak4m" path="res://MapAssets/mainlevbuild.png" id="2_b6fju"]
 [ext_resource type="Texture2D" uid="uid://ddoij4o26ytk6" path="res://MapAssets/decorative.png" id="3_6h5vk"]
@@ -21,9 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://bwff8irmqh8w7" path="res://Scenes/enemy_spawner.tscn" id="20_mipjh"]
 [ext_resource type="Script" uid="uid://dot3co5ssx2d8" path="res://Scripts/health_bar.gd" id="20_vtwju"]
 [ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="21_aq00n"]
-[ext_resource type="PackedScene" uid="uid://blolfp1um5oxh" path="res://Scenes/hp_potion.tscn" id="21_fnr0w"]
+[ext_resource type="PackedScene" uid="uid://663ni0y4m14v" path="res://Scenes/hp_potion.tscn" id="21_fnr0w"]
+[ext_resource type="PackedScene" uid="uid://bqpi5sxl4va1m" path="res://Scenes/demon.tscn" id="21_m8c54"]
+[ext_resource type="PackedScene" uid="uid://3pmpkay0htpt" path="res://Scenes/demon2.tscn" id="22_5q52j"]
 [ext_resource type="PackedScene" uid="uid://cyeio3ey71jnw" path="res://Scenes/character_body_2d.tscn" id="22_817jg"]
 [ext_resource type="PackedScene" uid="uid://k6w22rr5buj7" path="res://Objects/experience_gem.tscn" id="22_vtwju"]
+[ext_resource type="PackedScene" uid="uid://rkbfjt3prwai" path="res://Scenes/bat.tscn" id="25_gqlrj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6h5vk"]
 texture = ExtResource("2_b6fju")
@@ -3396,18 +3399,18 @@ position = Vector2(-2, 87)
 position = Vector2(2, -3)
 zoom = Vector2(4, 4)
 
-[node name="GrabArea" type="Area2D" parent="Player"]
+[node name="GrabArea2" type="Area2D" parent="Player"]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/GrabArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/GrabArea2"]
 shape = SubResource("CircleShape2D_817jg")
 
-[node name="CollectArea" type="Area2D" parent="Player"]
+[node name="CollectArea2" type="Area2D" parent="Player"]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CollectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CollectArea2"]
 shape = SubResource("CircleShape2D_vtwju")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
@@ -3482,14 +3485,22 @@ text = "HP"
 
 [node name="EnemySpawner" parent="." instance=ExtResource("20_mipjh")]
 
+[node name="demon2" parent="." instance=ExtResource("22_5q52j")]
+position = Vector2(118, 68)
+
+[node name="demon" parent="." instance=ExtResource("21_m8c54")]
+position = Vector2(106, 127)
+
+[node name="bat" parent="." instance=ExtResource("25_gqlrj")]
+position = Vector2(97, 97)
+
 [node name="Purple_slime" parent="." instance=ExtResource("21_aq00n")]
-position = Vector2(116, 93)
+position = Vector2(115, 21)
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="ExperienceGem" parent="Node2D" instance=ExtResource("22_vtwju")]
 position = Vector2(-146, 66)
-experience = 1
 
 [node name="ExperienceGem2" parent="Node2D" instance=ExtResource("22_vtwju")]
 position = Vector2(-263, 52)
@@ -3501,6 +3512,6 @@ position = Vector2(-270, 104)
 [node name="hp_potion" parent="." instance=ExtResource("21_fnr0w")]
 position = Vector2(-223, 133)
 
-[connection signal="area_entered" from="Player/GrabArea" to="Player" method="_on_grab_area_area_entered"]
-[connection signal="area_entered" from="Player/CollectArea" to="Player" method="_on_collect_area_area_entered"]
+[connection signal="area_entered" from="Player/GrabArea2" to="Player" method="_on_grab_area_area_entered"]
+[connection signal="area_entered" from="Player/CollectArea2" to="Player" method="_on_collect_area_area_entered"]
 [connection signal="timeout" from="Player/CanvasLayer/Control/HealthBar/Timer" to="Player/CanvasLayer/Control/HealthBar" method="_on_timer_timeout"]

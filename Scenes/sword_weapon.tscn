@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm0x0qwan1ak8"]
+
+[ext_resource type="Script" uid="uid://cij6gindcnt5v" path="res://Scripts/sword_weapon.gd" id="1_sword"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sword"]
+radius = 40.0
+
+[node name="SwordWeapon" type="Area2D"]
+collision_layer = 4
+monitoring = false
+script = ExtResource("1_sword")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sword")
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
