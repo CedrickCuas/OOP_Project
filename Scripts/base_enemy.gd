@@ -18,6 +18,8 @@ var is_dead: bool = false
 # Experience gem scene
 var exp_gem = preload("res://Objects/experience_gem.tscn")
 
+var hp_potion_scene = preload("res://Scenes/hp_potion.tscn")
+
 func _ready():
 	health = max_health
 	
@@ -61,7 +63,8 @@ func die():
 	
 	# Disable collision
 	set_physics_process(false)
-	$ObstacleCollision.set_deferred("disabled", true)
+	#$ObstacleCollision.set_deferred("disabled", true)
+	$CollisionShape2D.set_deferred("disabled", true)
 	
 	# Disable hitbox
 	if hitbox:
@@ -83,7 +86,15 @@ func drop_experience():
 	gem.global_position = global_position
 	gem.experience = experience_drop
 	get_parent().call_deferred("add_child", gem)
-
+	
+# New function to handle the 20% drop chance
+func check_for_potion_drop():
+	#var roll = randf() # Generates a float between 0.0 and 1.0
+	#if roll <= 0.80:
+	var potion = hp_potion_scene.instantiate()
+	potion.global_position = global_position
+	get_parent().call_deferred("add_child", potion)
+		
 func _on_hitbox_area_entered(area: Area2D):
 	# This will be connected to player's weapon attacks
 	if area.is_in_group("player_attack"):
