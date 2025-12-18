@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://k6w22rr5buj7"]
+
+[ext_resource type="Texture2D" uid="uid://dh2u7fq6johu" path="res://MapAssets/candleA_02.png" id="1_2psq6"]
+[ext_resource type="Script" uid="uid://c67lukqniynpo" path="res://Objects/experience_gem.gd" id="1_bvpv0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kn3jl"]
+size = Vector2(37, 38)
+
+[node name="ExperienceGem" type="Area2D" groups=["loot"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_bvpv0")
+experience = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(30, -4.0000005)
+scale = Vector2(1.9285715, 1.7)
+texture = ExtResource("1_2psq6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(30, -6)
+shape = SubResource("RectangleShape2D_kn3jl")

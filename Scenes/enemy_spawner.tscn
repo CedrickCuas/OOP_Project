@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwff8irmqh8w7"]
+
+[ext_resource type="Script" uid="uid://b6wg76aphwwvg" path="res://Scripts/enemy_spawner.gd" id="1_4l55s"]
+[ext_resource type="Script" uid="uid://bl4x805u1l8iw" path="res://Scripts/spawn_info.gd" id="2_8h7h8"]
+[ext_resource type="PackedScene" uid="uid://diyovk7rsayhk" path="res://Scenes/purple_slime.tscn" id="3_cdqhx"]
+
+[sub_resource type="Resource" id="Resource_cdqhx"]
+script = ExtResource("2_8h7h8")
+time_end = 60
+enemy = ExtResource("3_cdqhx")
+enemy_num = 2
+enemy_spawn_delay = 1
+metadata/_custom_type_script = "uid://bl4x805u1l8iw"
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_4l55s")
+spawns = Array[ExtResource("2_8h7h8")]([SubResource("Resource_cdqhx")])
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

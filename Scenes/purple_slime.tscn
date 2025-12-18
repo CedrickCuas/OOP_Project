@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://diyovk7rsayhk"]
+[gd_scene load_steps=19 format=3 uid="uid://diyovk7rsayhk"]
 
 [ext_resource type="Script" uid="uid://cmydjhnjbo2cu" path="res://Scripts/purple_slime.gd" id="1_4sdck"]
 [ext_resource type="Texture2D" uid="uid://w3jpydwtumxs" path="res://EnemyAssets/Slime Mob.png" id="1_krsyl"]
@@ -92,23 +92,28 @@ animations = [{
 "texture": SubResource("AtlasTexture_lodx0")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Walking",
 "speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djree"]
+radius = 8.0
 
-[node name="Purple_slime" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4sdck"]
+radius = 9.0
+
+[node name="Purple_slime" type="CharacterBody2D"]
 script = ExtResource("1_4sdck")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xg40y")
-frame = 1
-frame_progress = 0.75609213
+animation = &"Walking"
+autoplay = "Walking"
+frame_progress = 0.99282706
 
 [node name="killzone" parent="." instance=ExtResource("2_4sdck")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+[node name="KillCollision" type="CollisionShape2D" parent="killzone"]
 shape = SubResource("CircleShape2D_djree")
 
 [node name="RayCast2D_Right" type="RayCast2D" parent="."]
@@ -116,3 +121,6 @@ target_position = Vector2(15, 0)
 
 [node name="RayCast2D_Left" type="RayCast2D" parent="."]
 target_position = Vector2(-15, 0)
+
+[node name="ObstacleCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4sdck")

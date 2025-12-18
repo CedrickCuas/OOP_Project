@@ -1,19 +1,18 @@
-extends Node2D
+extends BaseEnemy
 
-const SPEED = 60
-var direction  = 1
+func _ready():
+	max_health = 8
+	speed = 25.0
+	damage = 1
+	experience_drop = 5
+	super._ready()
 
-@onready var ray_cast_2d_right: RayCast2D = $RayCast2D_Right
-@onready var ray_cast_2d_left: RayCast2D = $RayCast2D_Left
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
-func _process(delta: float) -> void:
-	if ray_cast_2d_right.is_colliding():
-		direction = -1
-		animated_sprite_2d.flip_h = false
-	if ray_cast_2d_left.is_colliding():
-		direction = 1
-		animated_sprite_2d.flip_h = true
-		
+func _physics_process(delta):
+	if is_dead:
+		return
 	
-	position.x += direction * SPEED * delta
+	super._physics_process(delta)
+	
+	# Slime uses "Walking" animation instead of "Run"
+	if animated_sprite and animated_sprite.sprite_frames.has_animation("Walking"):
+		animated_sprite.play("Walking")
